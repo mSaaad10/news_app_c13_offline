@@ -3,20 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app_c13_offline/data/api_manager/api_manager.dart';
 import 'package:news_app_c13_offline/presentation/home/news/articles/article.dart';
 
-class ArticlesWidget extends StatelessWidget {
-  const ArticlesWidget({super.key, required this.sourceId});
+class ArticlesListWidget extends StatelessWidget {
+  const ArticlesListWidget({super.key, required this.sourceId});
 
   final String sourceId;
 
   @override
   Widget build(BuildContext context) {
-    // return Expanded(
-    //   child: ListView.separated(
-    //     padding: REdgeInsets.symmetric(horizontal: 24, vertical: 16),
-    //     separatorBuilder: (context, index) => SizedBox(height: 8.h,),
-    //     itemBuilder: (context, index) => Article(),itemCount: 10,),
-    // );
-
     return FutureBuilder(
       future: ApiManager.getArticles(sourceId),
       builder: (context, snapshot) {

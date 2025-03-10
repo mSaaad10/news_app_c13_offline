@@ -12,9 +12,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late Widget selectedWidget = CategoriesView(
-    onCategoryClicked: onCategoryClicked,
-  );
+  late Widget selectedWidget;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedWidget = CategoriesView(
+      onCategoryClicked: onCategoryClicked,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +42,7 @@ class _HomeState extends State<Home> {
   }
 
   void onCategoryClicked(CategoryDM category) {
-    selectedWidget = NewsView(
+    selectedWidget = CategoryDetails(
       category: category,
     );
     setState(() {});

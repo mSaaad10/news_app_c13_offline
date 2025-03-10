@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_c13_offline/core/colors_manager.dart';
 import 'package:news_app_c13_offline/data/model/sources_response/Source.dart';
-import 'package:news_app_c13_offline/presentation/home/news/articles/atricles.dart';
+import 'package:news_app_c13_offline/presentation/home/news/articles/atricles_list_widget.dart';
 
 class SourcesListWidget extends StatefulWidget {
-  const SourcesListWidget({
-    super.key,
-    required this.sources,
-  });
+  const SourcesListWidget({super.key, required this.sources});
 
   final List<Source> sources;
 
@@ -46,7 +43,7 @@ class _SourcesListWidgetState extends State<SourcesListWidget> {
                 },
               ).toList(),
             )),
-        ArticlesWidget(sourceId: widget.sources[tappedIndex].id ?? '')
+        ArticlesListWidget(sourceId: widget.sources[tappedIndex].id ?? '')
       ],
     );
   }
