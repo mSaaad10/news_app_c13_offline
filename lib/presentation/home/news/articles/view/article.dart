@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app_c13_offline/data/model/articles_response/Articles.dart';
+import 'package:news_app_c13_offline/domain/entitty/ArticleEntity.dart';
 
 class ArticleWidget extends StatelessWidget {
   const ArticleWidget({super.key, required this.article});
 
-  final Article article;
+  final ArticleEntity article;
 
   @override
   Widget build(BuildContext context) {

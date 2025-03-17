@@ -1,4 +1,5 @@
 import 'package:news_app_c13_offline/data/model/sources_response/Source.dart';
+import 'package:news_app_c13_offline/domain/entitty/ArticleEntity.dart';
 
 class Article {
   Article({
@@ -45,5 +46,17 @@ class Article {
     map['publishedAt'] = publishedAt;
     map['content'] = content;
     return map;
+  }
+
+  /// HelperFuction
+  ArticleEntity toArticleEntity() {
+    return ArticleEntity(
+      author: author,
+      title: title,
+      publishedAt: publishedAt,
+      source: source?.toSourceEntity(),
+      url: url,
+      urlToImage: urlToImage,
+    );
   }
 }
