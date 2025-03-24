@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_c13_offline/core/base_state/base_state.dart';
+import 'package:news_app_c13_offline/core/di/di.dart';
 import 'package:news_app_c13_offline/core/widget/loading_widget.dart';
 import 'package:news_app_c13_offline/data/api_manager/api_manager.dart';
 import 'package:news_app_c13_offline/data/data_source_impl/sources_datasource_impl.dart';
@@ -31,10 +32,7 @@ class _SourcesViewState extends State<SourcesView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    viewModel = SourcesViewModel(
-        useCase: GetSourcesUseCase(
-            sourcesRepo: SourcesRepoImpl(
-                dataSource: SourcesDataSourceImpl(ApiManager()))));
+    viewModel = getIt<SourcesViewModel>();
 
     viewModel.getSources(widget.categoryDM.categoryId);
   }

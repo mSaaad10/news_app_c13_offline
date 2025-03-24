@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app_c13_offline/core/base_state/base_state.dart';
+import 'package:news_app_c13_offline/core/di/di.dart';
 import 'package:news_app_c13_offline/core/widget/loading_widget.dart';
-import 'package:news_app_c13_offline/data/api_manager/api_manager.dart';
-import 'package:news_app_c13_offline/data/data_source_impl/articles_api_datasource_impl.dart';
-import 'package:news_app_c13_offline/data/repo_impl/articles_repo_impl.dart';
 import 'package:news_app_c13_offline/domain/entitty/ArticleEntity.dart';
-import 'package:news_app_c13_offline/domain/usecases/get_articles_usecase.dart';
 import 'package:news_app_c13_offline/presentation/home/news/articles/view/article.dart';
 import 'package:news_app_c13_offline/presentation/home/news/articles/viewModel/articles_viewModel.dart';
 import 'package:provider/provider.dart';
@@ -27,10 +24,7 @@ class _ArticlesListWidgetState extends State<ArticlesListWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    viewModel = ArticlesViewModel(
-        useCase: GetArticlesUseCase(
-            repo: ArticlesRepoImpl(
-                dataSource: ArticlesApiDataSourceImpl(ApiManager()))));
+    viewModel = getIt<ArticlesViewModel>();
 
     viewModel.getArticles(widget.sourceId);
   }
@@ -45,33 +39,6 @@ class _ArticlesListWidgetState extends State<ArticlesListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // return FutureBuilder(
-    //   future: ApiManager.getArticles(sourceId),
-    //   builder: (context, snapshot) {
-    //     if (snapshot.connectionState == ConnectionState.waiting) {
-    //       return Center(
-    //         child: CircularProgressIndicator(),
-    //       );
-    //     }
-    //     if (snapshot.hasError) {
-    //       return Text("Error");
-    //     }
-    //     var articles = snapshot.data ?? [];
-    //
-    //     return Expanded(
-    //       child: ListView.separated(
-    //         padding: REdgeInsets.symmetric(horizontal: 24, vertical: 16),
-    //         separatorBuilder: (context, index) => SizedBox(
-    //           height: 8.h,
-    //         ),
-    //         itemBuilder: (context, index) => ArticleWidget(
-    //           article: articles[index],
-    //         ),
-    //         itemCount: articles.length,
-    //       ),
-    //     );
-    //   },
-    // );
     return ChangeNotifierProvider.value(
       value: viewModel,
       child: Consumer<ArticlesViewModel>(

@@ -1,15 +1,16 @@
+import 'package:injectable/injectable.dart';
 import 'package:news_app_c13_offline/core/result.dart';
 import 'package:news_app_c13_offline/data/api_manager/api_manager.dart';
 import 'package:news_app_c13_offline/data/datasource_contract/articles_datasource.dart';
 import 'package:news_app_c13_offline/data/model/articles_response/Articles.dart';
 
+@Injectable(as: ArticlesDataSource)
 class ArticlesApiDataSourceImpl extends ArticlesDataSource {
   late ApiManager apiManager;
 
   /// dependency injection
-  ArticlesApiDataSourceImpl(
-    this.apiManager,
-  );
+  @factoryMethod
+  ArticlesApiDataSourceImpl(this.apiManager,);
 
   @override
   Future<Result<List<Article>>> getArticles(String sourceId) {

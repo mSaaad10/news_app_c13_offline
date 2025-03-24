@@ -1,12 +1,15 @@
+import 'package:injectable/injectable.dart';
 import 'package:news_app_c13_offline/core/result.dart';
 import 'package:news_app_c13_offline/data/datasource_contract/articles_datasource.dart';
 import 'package:news_app_c13_offline/data/model/articles_response/Articles.dart';
 import 'package:news_app_c13_offline/domain/entitty/ArticleEntity.dart';
 import 'package:news_app_c13_offline/domain/repository_contract/articles_repo_contract.dart';
 
+@Injectable(as: ArticlesRepo)
 class ArticlesRepoImpl extends ArticlesRepo {
   ArticlesDataSource dataSource;
 
+  @factoryMethod
   ArticlesRepoImpl({required this.dataSource});
 
   @override
@@ -18,7 +21,7 @@ class ArticlesRepoImpl extends ArticlesRepo {
             data: result.data
                 .map(
                   (article) => article.toArticleEntity(),
-                )
+            )
                 .toList());
       case ServerError<List<Article>>():
         return ServerError(code: result.code, message: result.message);

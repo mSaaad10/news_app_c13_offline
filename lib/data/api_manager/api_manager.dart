@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:news_app_c13_offline/core/result.dart';
 import 'package:news_app_c13_offline/data/model/articles_response/Articles.dart';
 import 'package:news_app_c13_offline/data/model/articles_response/ArticlesResponse.dart';
@@ -8,6 +9,8 @@ import 'package:news_app_c13_offline/data/model/sources_response/Source.dart';
 import 'package:news_app_c13_offline/data/model/sources_response/Sources_response.dart';
 
 // https://newsapi.org/v2/top-headlines/sources?apiKey=API_KEY
+
+@singleton
 class ApiManager {
   static const String baseUrl = "newsapi.org";
   static const String apiKey = "be69a84c535c43928fdad67c7cd21548";
